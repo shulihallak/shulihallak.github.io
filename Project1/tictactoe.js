@@ -21,15 +21,8 @@ var Game = {
 	computerScore: 0,
 
 
-
-	updatePlayerScore: function () {
-		this.playerScore +=1;
-	},
-	updateComputerScore: function () {
-		this.computerScore +=1;
-	},
 	updateScoreView: function() {
-		$('.badge').text("Current Player Score: " + this.playerScore + "\n" + "Current Computer Score" + this.computerScore );
+		$('.badge').text("Player Score: " + this.playerScore + "\n" + "Computer Score: " + this.computerScore );
 	},
 
 	
@@ -42,7 +35,8 @@ var Game = {
 				$(box1).text('X');
 				box1 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
 			
 			} else { 
 				console.log('try again');
@@ -54,7 +48,8 @@ var Game = {
 				$(box2).text('X');
 				box2 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
 			
 			} else { 
 				console.log('try again');
@@ -66,7 +61,9 @@ var Game = {
 				$(box3).text('X');
 				box3 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
+
 			
 			} else { 
 				console.log('try again');
@@ -78,7 +75,8 @@ var Game = {
 				$(box4).text('X');
 				box4 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
 			
 			} else { 
 				console.log('try again');
@@ -88,9 +86,10 @@ var Game = {
 		$(box5).on('click', function (){
 			if ((box5 != 'X') && (box5 != 'O')) {
 				$(box5).text('X');
-				box3 = 'X';
+				box5 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
 			
 			} else { 
 				console.log('try again');
@@ -102,7 +101,8 @@ var Game = {
 				$(box6).text('X');
 				box6 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
 			
 			} else { 
 				console.log('try again');
@@ -114,7 +114,8 @@ var Game = {
 				$(box7).text('X');
 				box7 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
 			
 			} else { 
 				console.log('try again');
@@ -126,7 +127,8 @@ var Game = {
 				$(box8).text('X');
 				box8 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
 			
 			} else { 
 				console.log('try again');
@@ -138,7 +140,8 @@ var Game = {
 				$(box9).text('X');
 				box3 = 'X';
 				moves +=1;
-				setComputerMove();
+				this.setY();
+				determineWinner();
 			
 			} else { 
 				console.log('try again');
@@ -149,71 +152,77 @@ var Game = {
 		}
 	},	
 	
-	setComputerMove: function () {
+	setY: function () {
 		//sets a random # from 1 - 9 
 		var random = Math.floor(Math.random() * 9) + 1;
 
-		while(x) {
+		
 		if ((random == 1) && (box1 != 'X') && (box1 != 'O')) {
 			$(box1).text('O');
 			box1 = 'O';
 			moves +=1;
-			x = true;
+			determineWinner();
 		}
 		if ((random == 2) && (box2 != 'X') && (box2 != 'O')) {
 			$(box2).text('O');
 			box2 = 'O';
 			moves +=1;
-			x = true;
+			determineWinner();
 		}
 		if ((random == 3) && (box3 != 'X') && (box3 != 'O')) {
 			$(box3).text('O');
 			box3 = 'O';
 			moves +=1;
-			x = true;
+			determineWinner();
 		}
 		if ((random == 4) && (box4 != 'X') && (box4 != 'O')) {
 			$(box4).text('O');
 			box4 = 'O';
 			moves +=1;
-			x = true;
+			determineWinner();
 		}
 		if (random == 5 && box5 != 'X' && box5 != 'O') {
 			$(box5).text('O');
 			box5 = 'O';
 			moves +=1;
-			x = true;
+			determineWinner();
 		}
 		if (random == 6 && box6 != 'X' && box6 != 'O') {
 			$(box6).text('O');
 			box6 = 'O';
 			moves +=1;
-			x = true;
+			determineWinner();
 		}
 		if (random == 7 && box7 != 'X' && box7 != 'O') {
 			$(box7).text('O');
 			box7 = 'O';
 			x = true;
-			moves +=1;
+			determineWinner();
 		}
 		if (random == 8 && box8 != 'X' && box8 != 'O') {
 			$(box8).text('O');
 			box8 = 'O';
 			x = true;
-			moves +=1;
+			determineWinner();
 		}
 		if (random == 9 && box9 != 'X' && box9 != 'O') {
 			$(box9).text('O');
 			box9 = 'O';
 			x = true;
-			moves +=1;
+			determineWinner();
 		}
-		x = false;
-		break;
+		
 
+},
+
+	start: function start() {
+		this.setX();
+		determineWinner();
+		this.updateScoreView();
+	}
 }
-}
-}
+
+
 	
 
 function determineWinner () {
@@ -264,7 +273,32 @@ function determineWinner () {
 		yWins();
 	}
 	if (box3 == 'X' && box5 == 'X' && box7 == 'X') {
-		xWins();
+		yWins();
 	}
+
+
 	
 }
+
+	function tie () {
+	alert("its a tie");
+	Game.updateScoreView();
+	};
+
+	function xWins () {
+	alert("X wins!")
+	Game.playerScore +=1;
+	Game.updateScoreView();
+	};
+
+	function yWins () {
+	alert("Y wins!")
+	Game.computerScore +=1;
+	Game.updateScoreView();
+	};
+
+	function reset () {
+		$(boxes).text('');
+	}
+
+Game.start();
