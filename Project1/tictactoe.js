@@ -14,6 +14,7 @@ var box1 = $('#a'),
  	box8 = $('#h'),
  	box9 = $('#i');
 
+var moves = 0;
 
 var Game = {
 	playerScore: 0,
@@ -40,6 +41,8 @@ var Game = {
 			if ((box1 != 'X') && (box1 != 'O')) {
 				$(box1).text('X');
 				box1 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
@@ -50,6 +53,8 @@ var Game = {
 			if ((box2 != 'X') && (box2 != 'O')) {
 				$(box2).text('X');
 				box2 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
@@ -60,6 +65,8 @@ var Game = {
 			if ((box3 != 'X') && (box3 != 'O')) {
 				$(box3).text('X');
 				box3 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
@@ -70,6 +77,8 @@ var Game = {
 			if ((box4 != 'X') && (box4 != 'O')) {
 				$(box4).text('X');
 				box4 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
@@ -80,6 +89,8 @@ var Game = {
 			if ((box5 != 'X') && (box5 != 'O')) {
 				$(box5).text('X');
 				box3 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
@@ -90,6 +101,8 @@ var Game = {
 			if ((box6 != 'X') && (box6 != 'O')) {
 				$(box6).text('X');
 				box6 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
@@ -100,6 +113,8 @@ var Game = {
 			if ((box7 != 'X') && (box7 != 'O')) {
 				$(box7).text('X');
 				box7 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
@@ -110,6 +125,8 @@ var Game = {
 			if ((box8 != 'X') && (box8 != 'O')) {
 				$(box8).text('X');
 				box8 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
@@ -120,20 +137,134 @@ var Game = {
 			if ((box9 != 'X') && (box9 != 'O')) {
 				$(box9).text('X');
 				box3 = 'X';
+				moves +=1;
+				setComputerMove();
 			
 			} else { 
 				console.log('try again');
 			}
 		})
+		if (moves == 9) {
+			tie();
+		}
 	},	
 	
 	setComputerMove: function () {
+		//sets a random # from 1 - 9 
+		var random = Math.floor(Math.random() * 9) + 1;
 
-	}	
+		while(x) {
+		if ((random == 1) && (box1 != 'X') && (box1 != 'O')) {
+			$(box1).text('O');
+			box1 = 'O';
+			moves +=1;
+			x = true;
+		}
+		if ((random == 2) && (box2 != 'X') && (box2 != 'O')) {
+			$(box2).text('O');
+			box2 = 'O';
+			moves +=1;
+			x = true;
+		}
+		if ((random == 3) && (box3 != 'X') && (box3 != 'O')) {
+			$(box3).text('O');
+			box3 = 'O';
+			moves +=1;
+			x = true;
+		}
+		if ((random == 4) && (box4 != 'X') && (box4 != 'O')) {
+			$(box4).text('O');
+			box4 = 'O';
+			moves +=1;
+			x = true;
+		}
+		if (random == 5 && box5 != 'X' && box5 != 'O') {
+			$(box5).text('O');
+			box5 = 'O';
+			moves +=1;
+			x = true;
+		}
+		if (random == 6 && box6 != 'X' && box6 != 'O') {
+			$(box6).text('O');
+			box6 = 'O';
+			moves +=1;
+			x = true;
+		}
+		if (random == 7 && box7 != 'X' && box7 != 'O') {
+			$(box7).text('O');
+			box7 = 'O';
+			x = true;
+			moves +=1;
+		}
+		if (random == 8 && box8 != 'X' && box8 != 'O') {
+			$(box8).text('O');
+			box8 = 'O';
+			x = true;
+			moves +=1;
+		}
+		if (random == 9 && box9 != 'X' && box9 != 'O') {
+			$(box9).text('O');
+			box9 = 'O';
+			x = true;
+			moves +=1;
+		}
+		x = false;
+		break;
 
+}
+}
 }
 	
 
 function determineWinner () {
+	if (box1 == 'X' && box2 == 'X' && box3 == 'X') {
+		xWins();
+	}
+	if (box4 == 'X' && box5 == 'X' && box6 == 'X') {
+		xWins();
+	}
+	if (box7 == 'X' && box8 == 'X' && box9 == 'X') {
+		xWins();
+	}
+	if (box1 == 'X' && box4 == 'X' && box7 == 'X') {
+		xWins();
+	}
+	if (box2 == 'X' && box5 == 'X' && box8 == 'X') {
+		xWins();
+	}
+	if (box3 == 'X' && box6 == 'X' && box9 == 'X') {
+		xWins();
+	}
+	if (box1 == 'X' && box5 == 'X' && box9 == 'X') {
+		xWins();
+	}
+	if (box3 == 'X' && box5 == 'X' && box7 == 'X') {
+		xWins();
+	}
+	//determine Y
+	if (box1 == 'Y' && box2 == 'Y' && box3 == 'Y') {
+		yWins();
+	}
+	if (box4 == 'Y' && box5 == 'Y' && box6 == 'Y') {
+		yWins();
+	}
+	if (box7 == 'Y' && box8 == 'Y' && box9 == 'Y') {
+		yWins();
+	}
+	if (box1 == 'Y' && box4 == 'Y' && box7 == 'Y') {
+		yWins();
+	}
+	if (box2 == 'Y' && box5 == 'Y' && box8 == 'Y') {
+		yWins();
+	}
+	if (box3 == 'Y' && box6 == 'Y' && box9 == 'Y') {
+		yWins();
+	}
+	if (box1 == 'Y' && box5 == 'Y' && box9 == 'Y') {
+		yWins();
+	}
+	if (box3 == 'X' && box5 == 'X' && box7 == 'X') {
+		xWins();
+	}
 	
 }
