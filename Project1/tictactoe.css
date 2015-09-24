@@ -24,3 +24,8 @@
 	margin: 0 auto;
 	text-align: center;
 }
+
+.btn-group {
+	position: relative;
+	display: block;
+}

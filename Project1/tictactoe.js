@@ -220,7 +220,7 @@ var Game = {
 		determineWinner();
 		this.updateScoreView();
 	}
-}
+};
 
 
 	
@@ -301,4 +301,16 @@ function determineWinner () {
 		$(boxes).text('');
 	}
 
-Game.start();
+
+function buttons () {
+	$('a').on('click', function() {
+	if ($('a')[0]) {
+		Game.start();
+	} else if ($('a')[1]) {
+		Game.reset();
+	}
+	})
+};
+
+buttons();
+
