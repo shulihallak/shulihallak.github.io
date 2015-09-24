@@ -31,45 +31,105 @@ var Game = {
 		$('.badge').text("Current Player Score: " + this.playerScore + "\n" + "Current Computer Score" + this.computerScore );
 	},
 
-	setListeners: function () {
-		var theGame = this;
-
-		$('.container').on('click', function (e) {
-			console.log(e.target.id);
-			var boxID = e.target.id;
-			})
-	},
 	
+	
+	// set conditionals for allowing 'X'
 	setX: function () {
-		$(box1).on('click', function (){
-			$(box1).text('X');
-		})
-		$(box2).on('click', function (){
-			$(box2).text('X');
-		})
-		$(box3).on('click', function (){
-			$(box3).text('X');
-		})
-		$(box4).on('click', function (){
-			$(box4).text('X');
-		})
-		$(box5).on('click', function (){
-			$(box5).text('X');
-		})
-		$(box6).on('click', function (){
-			$(box6).text('X');
-		})
-		$(box7).on('click', function (){
-			$(box7).text('X');
-		})
-		$(box8).on('click', function (){
-			$(box8).text('X');
-		})
-		$(box9).on('click', function (){
-			$(box9).text('X');
-		})
-	}	
 		
+		$(box1).on('click', function (){
+			if ((box1 != 'X') && (box1 != 'O')) {
+				$(box1).text('X');
+				box1 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+
+		$(box2).on('click', function (){
+			if ((box2 != 'X') && (box2 != 'O')) {
+				$(box2).text('X');
+				box2 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+
+		$(box3).on('click', function (){
+			if ((box3 != 'X') && (box3 != 'O')) {
+				$(box3).text('X');
+				box3 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+		
+		$(box4).on('click', function (){
+			if ((box4 != 'X') && (box4 != 'O')) {
+				$(box4).text('X');
+				box4 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+
+		$(box5).on('click', function (){
+			if ((box5 != 'X') && (box5 != 'O')) {
+				$(box5).text('X');
+				box3 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+
+		$(box6).on('click', function (){
+			if ((box6 != 'X') && (box6 != 'O')) {
+				$(box6).text('X');
+				box6 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+		
+		$(box7).on('click', function (){
+			if ((box7 != 'X') && (box7 != 'O')) {
+				$(box7).text('X');
+				box7 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+
+		$(box8).on('click', function (){
+			if ((box8 != 'X') && (box8 != 'O')) {
+				$(box8).text('X');
+				box8 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+
+		$(box9).on('click', function (){
+			if ((box9 != 'X') && (box9 != 'O')) {
+				$(box9).text('X');
+				box3 = 'X';
+			
+			} else { 
+				console.log('try again');
+			}
+		})
+	},	
+	
+	setComputerMove: function () {
+
+	}	
 
 }
 	
