@@ -1,44 +1,6 @@
-function Player(a) {
-    this.identity = a;
-    this.wins = 0;
-  
-
-}
-divs = [];
-
-function Box () {
-    this.move = ['X', 'O'];
-     
-
-}
-
-function BoardView (box, i) {
-    this.box = box;
-    this.el = $('div class="column-md-4" ');
-
-   
-}
-
-for (var i = 0; i < 9; i++) {
-    var newBox = new Box();
-    var newBoardView = new BoardView(box, i);
-    divs.push(newBox());
-    $('.container .row').append(newBoardView.el);
-
-
-}
-
-
-
-
-
-
-
 var board = $('.container');
 
 var boxes = $('.col-md-4');	
-
-var xBoxes = [];
 
 var values = ['X', 'O'];
 
@@ -55,39 +17,24 @@ var box1 = $('#a'),
 var moves = 0;
 
 var Game = {
-	playerXScore: 0,
-	playerYScore: 0,
+	playerScore: 0,
+	computerScore: 0,
 
 
 	updateScoreView: function() {
-		$('.badge').text("Player X  Score: " + this.playerXScore + " , " + "Player O  Score: " + this.playerYScore );
+		$('.badge').text("Player Score: " + this.playerScore + "\n" + "Computer Score: " + this.computerScore );
 	},
 
-	playerX: function(box) {
-		var box = $(box[i]);
-		for (var i = 0; i < boxes.length; i++ ) {
-
-		}
-	},
-
+	
 	
 	// set conditionals for allowing 'X'
-	
-	setBoard: function () {
-		newBox = $('<div class="col-md-4"')
-
-	},
-
-
 	setX: function () {
 		
-
-
 		$(box1).on('click', function (){
 			if ((box1 != 'X') && (box1 != 'O')) {
 				$(box1).text('X');
+				box1 = 'X';
 				moves +=1;
-				box1 = 'X'
 				Game.setY();
 				determineWinner();
 			
@@ -191,7 +138,7 @@ var Game = {
 		$(box9).on('click', function (){
 			if ((box9 != 'X') && (box9 != 'O')) {
 				$(box9).text('X');
-				box9 = 'X';
+				box3 = 'X';
 				moves +=1;
 				Game.setY();
 				determineWinner();
@@ -340,19 +287,18 @@ function determineWinner () {
 
 	function xWins () {
 	alert("X wins!")
-	Game.playerXScore +=1;
+	Game.playerScore +=1;
 	Game.updateScoreView();
 	};
 
 	function yWins () {
 	alert("Y wins!")
-	Game.playerYScore +=1;
+	Game.computerScore +=1;
 	Game.updateScoreView();
 	};
 
 	function reset () {
-		document.reload(true);
-
+		$(boxes).text('');
 	}
 
 
@@ -361,10 +307,9 @@ function buttons () {
 	if ($('a')[0]) {
 		Game.start();
 	} else if ($('a')[1]) {
-		reset();
+		Game.reset();
 	}
 	})
 };
 
 buttons();
-
