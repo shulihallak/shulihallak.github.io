@@ -1,6 +1,44 @@
+function Player(a) {
+    this.identity = a;
+    this.wins = 0;
+  
+
+}
+divs = [];
+
+function Box () {
+    this.move = ['X', 'O'];
+     
+
+}
+
+function BoardView (box, i) {
+    this.box = box;
+    this.el = $('div class="column-md-4" ');
+
+   
+}
+
+for (var i = 0; i < 9; i++) {
+    var newBox = new Box();
+    var newBoardView = new BoardView(box, i);
+    divs.push(newBox());
+    $('.container .row').append(newBoardView.el);
+
+
+}
+
+
+
+
+
+
+
 var board = $('.container');
 
 var boxes = $('.col-md-4');	
+
+var xBoxes = [];
 
 var values = ['X', 'O'];
 
@@ -17,25 +55,40 @@ var box1 = $('#a'),
 var moves = 0;
 
 var Game = {
-	playerScore: 0,
-	computerScore: 0,
+	playerXScore: 0,
+	playerYScore: 0,
 
 
 	updateScoreView: function() {
-		$('.badge').text("Player Score: " + this.playerScore + "\n" + "Computer Score: " + this.computerScore );
+		$('.badge').text("Player X  Score: " + this.playerXScore + " , " + "Player O  Score: " + this.playerYScore );
+	},
+
+	playerX: function(box) {
+		var box = $(box[i]);
+		for (var i = 0; i < boxes.length; i++ ) {
+
+		}
 	},
 
 	
-	
 	// set conditionals for allowing 'X'
+	
+	setBoard: function () {
+		newBox = $('<div class="col-md-4"')
+
+	},
+
+
 	setX: function () {
 		
+
+
 		$(box1).on('click', function (){
 			if ((box1 != 'X') && (box1 != 'O')) {
 				$(box1).text('X');
-				box1 = 'X';
 				moves +=1;
-				this.setY();
+				box1 = 'X'
+				Game.setY();
 				determineWinner();
 			
 			} else { 
@@ -48,7 +101,7 @@ var Game = {
 				$(box2).text('X');
 				box2 = 'X';
 				moves +=1;
-				this.setY();
+				Game.setY();
 				determineWinner();
 			
 			} else { 
@@ -61,7 +114,7 @@ var Game = {
 				$(box3).text('X');
 				box3 = 'X';
 				moves +=1;
-				this.setY();
+				Game.setY();
 				determineWinner();
 
 			
@@ -75,7 +128,7 @@ var Game = {
 				$(box4).text('X');
 				box4 = 'X';
 				moves +=1;
-				this.setY();
+				Game.setY();
 				determineWinner();
 			
 			} else { 
@@ -88,7 +141,7 @@ var Game = {
 				$(box5).text('X');
 				box5 = 'X';
 				moves +=1;
-				this.setY();
+				Game.setY();
 				determineWinner();
 			
 			} else { 
@@ -101,7 +154,7 @@ var Game = {
 				$(box6).text('X');
 				box6 = 'X';
 				moves +=1;
-				this.setY();
+				Game.setY();
 				determineWinner();
 			
 			} else { 
@@ -114,7 +167,7 @@ var Game = {
 				$(box7).text('X');
 				box7 = 'X';
 				moves +=1;
-				this.setY();
+				Game.setY();
 				determineWinner();
 			
 			} else { 
@@ -127,7 +180,7 @@ var Game = {
 				$(box8).text('X');
 				box8 = 'X';
 				moves +=1;
-				this.setY();
+				Game.setY();
 				determineWinner();
 			
 			} else { 
@@ -138,9 +191,9 @@ var Game = {
 		$(box9).on('click', function (){
 			if ((box9 != 'X') && (box9 != 'O')) {
 				$(box9).text('X');
-				box3 = 'X';
+				box9 = 'X';
 				moves +=1;
-				this.setY();
+				Game.setY();
 				determineWinner();
 			
 			} else { 
@@ -287,18 +340,19 @@ function determineWinner () {
 
 	function xWins () {
 	alert("X wins!")
-	Game.playerScore +=1;
+	Game.playerXScore +=1;
 	Game.updateScoreView();
 	};
 
 	function yWins () {
 	alert("Y wins!")
-	Game.computerScore +=1;
+	Game.playerYScore +=1;
 	Game.updateScoreView();
 	};
 
 	function reset () {
-		$(boxes).text('');
+		document.reload(true);
+
 	}
 
 
@@ -307,7 +361,7 @@ function buttons () {
 	if ($('a')[0]) {
 		Game.start();
 	} else if ($('a')[1]) {
-		Game.reset();
+		reset();
 	}
 	})
 };
