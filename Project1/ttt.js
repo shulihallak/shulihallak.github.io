@@ -4,11 +4,39 @@ var b = [null, null, null, null, null, null, null, null, null];
 
 
 
-function  Player(identity, auto) {
+function  Player(identity, auto, turn) {
   this.identity = identity;
   this.wins = 0;
   this.auto = auto; 
+  this.turn = turn;
   
+}
+
+var PlayerX = new Player('X', false, 'X');
+var PlayerO = new Player('O', false);
+
+
+
+
+function playX () {
+	
+		 $box.on('click', function (e) {
+		  	console.log(e.target.dataset.index);
+		  	var a = e.target.dataset.index;
+		  	b[a] = 'X';
+		  	$(this).text('X');
+		  	playY();
+	})
+}
+function playY() {
+
+		$box.on('click', function (e){
+			console.log(e.target.dataset.index);
+			var b = e.target.dataset.index;
+			b[b] = 'O';
+			$(this).text('O');	
+			playX();		
+	})
 }
 
 
@@ -16,46 +44,57 @@ function  Player(identity, auto) {
 
 Player.prototype.setListener = function (identity) {
 //if player X
-	if (this.identity == 'X') {
-	  $box.on('click', function (e) {
-	  	console.log(e.target.dataset.index);
-	  	var a = e.target.dataset.index;
-	  	b[a] = 'X';
-	  	$(this).text('X');
-	  	autoplayer();
-	  	})
+	if (PlayerX.turn == 'X') {
+		if (this.identity == 'X') {
+		  $box.on('click', function (e) {
+		  	console.log(e.target.dataset.index);
+		  	var a = e.target.dataset.index;
+		  	b[a] = 'X';
+		  	$(this).text('X');
+		  		this.nextTurn = 'O';
+	
+		 })
+	 }
+	}  
+	if (PlayerO.turn == 'O') {
 
+
+		 if (this.identity == 'O' && PlayerO.autoplayer == false) {
+			$box.on('click', function (e){
+			console.log(e.target.dataset.index);
+			var b = e.target.dataset.index;
+			b[b] = 'O';
+			$(this).text('O');
+			this.nextTurn = 'X';
+		})
+	}
+	}
 }
-}
+
+
+
 
 function autoplayer () {
 
-	function getNull (array) {
-    var newIndex = [];
-    for (var i = 0; i < array.length; i++) {
-    if (array[i] == null) 
-    newIndex.push(i)
-    }
-    return newIndex;
-
-    function setNull () {
-    	getNull(b);
-    	var random = Math.floor(Math.random() * newIndex.length);
+  		var random = Math.floor(Math.random() * 9);
+		//loop through b array
 		
-		if ((b.indexOf(null) > -1)) {
-		for (var j = 0; j < newIndex.length; j++) {
-			var index = b[newIndex[j]];
-			if(b[random] != null)
-			b[random] = 'O';
-
-			var set = $(box)[random];
-			$(set).text('O');
-    		}
+		do {
+		for (var i = 0; i < b.length; i++) {
+			//if null, set value
+			if (b[random] == null) {
+				b[random] = 'O';
+				var next = $box[random];
+				$(next).text('O');
+				nextTurn();
+			}
 		}
-	}
-	}
+		} while (b.indexOf(null));
+}
 
-}	
+
+
+	
 		//loop through b array
 		//need to check that b[] has more than 0 nulls
 		// for (var i = 0; i < b.length; i++) {
@@ -84,24 +123,27 @@ function autoplayer () {
 
 var winner = null;
 
-function determineWinner () {
+// where z is X or O
+function determineWinner (z) {
 	//check all possible conditions for win
-	if (b[0] == 'X') {
+	if (b[0] == z) {
 		if (b[0] == b[1] && b[0] == b[2]) {
-			winner = 'X'
-			Player.wins +=1;
+			winner = z
+			Player(z).wins +=1;
 			console.log("Winner is " + winner + "!");
 		}
 	}
+	//if X wins
+
 }
 
 function start () {
 	PlayerX.setListener();
+	playX();
 }
  
 
-var PlayerX = new Player('X', false);
-var PlayerO = new Player('O', true);
+
 
 
 function buttons () {
@@ -119,7 +161,7 @@ function buttons () {
 buttons();
 
 
-
+$('#scoreboard').text("Player X score:  " + PlayerX.wins + " || Player O score:  " + PlayerO.wins);
 	
 
 
