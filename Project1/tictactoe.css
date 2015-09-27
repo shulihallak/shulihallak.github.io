@@ -4,26 +4,28 @@
 }
 
 .container {
-	margin: 0 auto;
-	text-align: center;
-	position: relative;
-	display: block;
-	left: 460px;
-	padding: 40px;
-}
 
-.col-md-4 {
-	width: 100%;
-	height: 50px;
-	border: 1px solid gray;
 }
 
 .row {
-	width: 300px;
-	height: 20px;
-	margin: 0 auto;
-	text-align: center;
+	margin-bottom: 0;
 }
+
+.col {
+	margin-bottom: 0;
+	height: 40px;
+}
+
+.row .col .s3{
+
+	border: 1px solid gray;
+}
+
+.row .col .s3:hover {
+	border: 1px solid blue;
+	opacity: .6;
+}
+
 
 .btn-group {
 	position: relative;

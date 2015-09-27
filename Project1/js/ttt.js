@@ -1,8 +1,10 @@
-var $box = $('.col');
+var $box = $('.col.s4');
 
 var b = [null, null, null, null, null, null, null, null, null];
 
-
+var nameFieldX = $('#first_name1');
+var nameFieldO = $('#first_name2');
+var scoreboard = $('#scoreboard');
 
 function  Player(identity, auto, turn) {
   this.identity = identity;
@@ -12,16 +14,36 @@ function  Player(identity, auto, turn) {
   
 }
 
-var PlayerX = new Player('X', false, 'X');
-var PlayerO = new Player('O', false);
+var nameX;
+var nameO;
+
+
+$(nameFieldX).on('keypress', function (e) {
+		console.log(e.keyCode);
+		if (e.keyCode === 13) {
+			nameX = $(this).val();
+			nameFieldX.text("val");
+		}
+		scoreboard.text( nameX + " score:  " + PlayerX.wins + " | " + nameO  + " score: " + PlayerO.wins);
+	});
+
+$(nameFieldO).on('keypress', function (e) {
+		console.log(e.keyCode);
+		if (e.keyCode === 13) {
+			nameO = $(this).val();
+			nameFieldO.text("val");
+		}
+		scoreboard.text( nameX + " score:  " + PlayerX.wins + " | " + nameO  + " score: " + PlayerO.wins);
+	}); 
+
+
+
+var PlayerX = new Player('X', false, nameX, 'X');
+var PlayerO = new Player('O', false, nameO);
 
 //get input name values
-var nameX = $('#first_name1').val();
-var nameO = $('#first_name2').val();
 
-function getNames () {
-	
-}
+
 
 
 function playX () {
@@ -131,7 +153,15 @@ var winner = null;
 
 // where z is X or O
 function determineWinner (z) {
+	//creat row, col, diag var
+
+	var row1 = (b[0] == b[1] == b[2]),
+		row2 = (b[3] == b[4] == b[5]),
+		row3 = (b[6] == b[7] == b[8]),
+		col1 = (b[0] == b[3] == b[6]) 
+
 	//check all possible conditions for win
+
 	if (b[0] == z) {
 		if (b[0] == b[1] && b[0] == b[2]) {
 			winner = z
@@ -164,7 +194,7 @@ function buttons () {
 buttons();
 
 
-$('#scoreboard').text("Player X score:  " + PlayerX.wins + " || Player O score:  " + PlayerO.wins);
+
 	
 
 // styling
