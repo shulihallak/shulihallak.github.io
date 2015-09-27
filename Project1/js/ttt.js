@@ -45,7 +45,6 @@ var PlayerO = new Player('O', false, nameO);
 
 
 
-
 function playX () {
 	
 		 $box.on('click', function (e) {
@@ -65,67 +64,73 @@ function playO() {
 			var b = e.target.dataset.index;
 			b[b] = 'O';
 			$(this).off('click');
-			$(this).text('O');	
+			$(this).text('O');
 			determineWinner('O');
 			playX();		
 	})
 }
 
 
+$box.on('click', function (e) {
+	console.log(e.target.dataset.index);
+})
 
 
-Player.prototype.setListener = function () {
-//if player X
-	if (PlayerX.turn == 'X') {
-		if (this.identity == 'X') {
-		  $box.on('click', function (e) {
-		  	console.log(e.target.dataset.index);
-		  	var a = e.target.dataset.index;
-		  	b[a] = 'X';
 
-		  	$(this).text('X');
-		  		// determineWinner('X');
-		  		this.nextTurn = 'O';
+// Player.prototype.setListener = function () {
+// //if player X
+// 	if (PlayerX.turn == 'X') {
+// 		if (this.identity == 'X') {
+// 		  $box.on('click', function (e) {
+// 		  	var a = e.target.dataset.index;
+// 		  	b[a] = 'X';
+		  	
+// 		  	$(this).text('X');
+// 		  		determineWinner();
+// 		  		this.nextTurn = 'O';
+// 		  		$(this).off('click');
 	
-		 })
-	 }
-	}  
-	if (PlayerO.turn == 'O') {
+// 		 })
+// 	 }
+// 	}  
+// 	if (PlayerO.turn == 'O') {
 
 
-		 if (this.identity == 'O' && PlayerO.autoplayer == false) {
-			$box.on('click', function (e){
-			console.log(e.target.dataset.index);
-			var b = e.target.dataset.index;
-			b[b] = 'O';
-			$(this).text('O');
-			// determineWinner('O');
-			this.nextTurn = 'X';
-		})
-	}
-	}
-}
+// 		 if (this.identity == 'O' && PlayerO.autoplayer == false) {
+// 			$box.on('click', function (e){
+// 			console.log(e.target.dataset.index);
+// 			var b = e.target.dataset.index;
+// 			b[b] = 'O';
+// 			$(this).text('O');
+			
+// 			// determineWinner('O');
+// 			this.nextTurn = 'X';
+// 			$(this).off('click');
+// 		})
+// 	}
+// 	}
+// }
 
 
 
 
-function autoplayer () {
+// function autoplayer () {
 
-  		var random = Math.floor(Math.random() * 9);
-		//loop through b array
+//   		var random = Math.floor(Math.random() * 9);
+// 		//loop through b array
 		
-		do {
-		for (var i = 0; i < b.length; i++) {
-			//if null, set value
-			if (b[random] == null) {
-				b[random] = 'O';
-				var next = $box[random];
-				$(next).text('O');
-				nextTurn();
-			}
-		}
-		} while (b.indexOf(null));
-}
+// 		do {
+// 		for (var i = 0; i < b.length; i++) {
+// 			//if null, set value
+// 			if (b[random] == null) {
+// 				b[random] = 'O';
+// 				var next = $box[random];
+// 				$(next).text('O');
+// 				nextTurn();
+// 			}
+// 		}
+// 		} while (b.indexOf(null));
+// }
 
 
 
@@ -169,177 +174,167 @@ var winner = null;
 	// 	b[0] == b[4] == b[8] = (b[0] == b[4] == b[8]),
 	// 	b[2] == b[4] == b[6] = (b[2] == b[4] == b[6]); 
 
-function determineWinner (z) {
+function determineWinner () {
 	
 
 
 
 	//check all possible conditions for win
 
-	if (b[0] == z) {
-		if (b[0] == b[1] == b[2]) {
-			winner = z;
-			Player(z).wins +=1;
-			console.log("Winner is " + winner + "!");
-			alert('winner')
+	if (b[0] == 'X') {
+		if (b[0] == 'X' && b[1] == 'X' && b[2] == 'X') {
+			winner = 'X';
+			PlayerX.wins +=1;
+			console.log("Winner is X!");
+			resetGame();
 		} else if (b[0] == b[3] == b[6]) {
-			winner = z;
-			console.log("Winner is " + winner + "!");
+			winner = 'X';
+			console.log("Winner is " + nameX + "!");
+			resetGame();
 		} else if (b[0] == b[4] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else {
-		    if (z == 'X') {
-		    	playO();
-		    } else if (z == 'O') {
-		    	playX();
+		    	playO();  
 		    }
-	} 
-	}	if (b[1] == z) {
+	}	if (b[1] == 'X') {
 		if(b[3] == b[4] == b[5]) {
-			winner = z;
-			console.log("Winner is " + winner + "!");
+			winner = 'X';
+			console.log("Winner is " + nameX + "!");
+			resetGame();
 		} else if (b[1] == b[4] == b[7]) {
-			winner = z;
-			console.log("Winner is " + winner + "!");
+			winner = 'X';
+			console.log("Winner is " + nameX + "!");
+			resetGame();
 		} else {
-			if (z == 'X') {
 				playO();
-			} else if (z == 'O') {
-				playX();
 			}
-
-		}
-	} if (b[2] == z) {
+	} if (b[2] == 'X') {
 		if (b[6] == b[7] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[2] == b[5] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[2] == b[4] == b[6]) {
-			winner = z;
+			winner = 'X';
+			resetGame();
 		} else {
-			if (z == 'X') {
-				playO();
-			}
-		}	if (z == 'O') {
-			playX();
+			playO();
+			resetGame();
 		}
-	} if (b[3] == z) {
+	} if (b[3] == 'X') {
 		if(b[3] == b[4] == b[5]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[0] == b[3] == b[6]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else {
-			if (z == 'X') {
-				playO();
+			playO();
 			}
-		}	if (z == 'O') {
-			playX();
-		}
-	} if (b[4] == z) {
+	
+	} if (b[4] == 'X') {
 		if(b[3] == b[4] == b[5]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[1] == b[4] == b[7]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[0] == b[4] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[2] == b[4] == b[6]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else {
-			if (z == 'X') {
-				playO();
-			}
-		}	if (z == 'O') {
-			playX();
+			playO();
 		}
-	} if (b[5] == z) {
+	} if (b[5] == 'X') {
 		if(b[6] == b[7] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[2] == b[5] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else {
-			if (z == 'X') {
-				playO();
-			}
-		}	if (z == 'O') {
-			playX();
+			playO();
 		}
-	} if (b[6] == z) {
+	} if (b[6] == 'X') {
 		if(b[6] == b[7] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[0] == b[3] == b[6]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[2] == b[4] == b[6]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else {
-			if (z == 'X') {
-				playO();
-			}
-		}	if (z == 'O') {
-			playX();
+			playO();
 		}
-	} if (b[7] == z) {
+	} if (b[7] == 'X') {
 		if (b[6] == b[7] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[1] == b[4] == b[7]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else {
-			if (z == 'X') {
-				playO();
-			}
-		}	if (z == 'O') {
-			playX();
+			playO();
 		}
-	} if (b[8] == z) {
+	} if (b[8] == 'X') {
 		if(b[6] == b[7] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[2] == b[5] == b[8]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		} else if (b[2] == b[4] == b[6]) {
-			winner = z;
+			winner = 'X';
 			console.log("Winner is " + winner + "!");
+			resetGame();
 		}else {
-			if (z == 'X') {
-				playO();
-			}
-		}	if (z == 'O') {
-			playX();
+			playO();
 		}
 	}
 }
 
 function start () {
-	PlayerX.setListener();
 	playX();
 }
  
-
+function resetGame () {
+	setTimeout(function () {
+		$box.text('');
+	}, 2000);
+}
 
 
 
 function buttons () {
 	$('.waves-effect').on('click', function() {
-	 {
+	 
 		start();
-	}
-})
+	})
 }
 
 
