@@ -15,7 +15,8 @@ div.container.card-panel.hoverable {
 	margin: 0 auto;
 	height: 50px;
 	width: 300px;
-	border: 1px solid blue;
+	font-size: 2rem;
+	font-family: "Arial";
 }
 
 #scoreboard {
