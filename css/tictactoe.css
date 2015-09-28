@@ -1,27 +1,39 @@
 * {
 	box-sizing: border-box;
 	text-align: center;
+	font-family: 'Julius Sans One', sans-serif;
 }
 
 h1 {
-	font-family: 'Exo 2', sans-serif;
+	font-family: 'Julius Sans One', sans-serif;
+	font-weight: lighter;
+	color: #01579b;
+	
 }
 div.container.card-panel.hoverable {
 	position: relative;
 	margin: 0 auto;
-	background-color: #f5f5f5;
+	background-color: #eceff1;
+	text-align: center;
+	font-size: 2rem;
+	line-height: 90px;
+	font-family: 'Jura', sans-serif;
+	color: #263238 ;
 }
 .winner {
 	margin: 0 auto;
+	padding-bottom: 20px;
 	height: 50px;
 	width: 300px;
-	font-size: 2rem;
-	font-family: "Arial";
+	font-size: 3rem;
+	font-family: 'Julius Sans One', sans-serif;
+	color: #00897b;
 }
 
 #scoreboard {
 	margin-bottom: 25px;
 }
+
 
 .row {
 	margin-bottom: 0px;
@@ -56,10 +68,10 @@ div.container.card-panel.hoverable {
 	border-bottom: 1px solid gray;
 }
 
-.col:hover {
+.col.s4:hover {
 
 	background-color: #40c4ff;
-	opacity: .3;
+	opacity: .2;
 
 }
 
@@ -67,6 +79,11 @@ div.container.card-panel.hoverable {
 .btn-group {
 	position: relative;
 	display: block;
-	margin-top: 25px;
+	margin-top: 40px;
 	margin-bottom: 40px;
+
+}
+
+.input-field:hover {
+	color: #01579b;
 }

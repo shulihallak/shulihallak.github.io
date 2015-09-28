@@ -40,8 +40,11 @@ $(nameFieldO).on('keypress', function (e) {
 var PlayerX = new Player('X', false, nameX);
 var PlayerO = new Player('O', false, nameO);
  
-function updateScore () {
-	scoreboard.text("Player X score:  " +  PlayerX.wins + " | " + "Player O score:  " + PlayerO.wins) 
+
+scoreboard.text("Player X score:  " +  PlayerX.wins + " | " + "Player O score:  " + PlayerO.wins) 
+
+if (nameO && nameX) {
+	scoreboard.text(nameX + " score:  " +  PlayerX.wins +  "|" + nameO + " score:  " +  PlayerO.wins); 
 }
 
 //get input name values
@@ -75,15 +78,16 @@ function updateScore () {
 })
 }
 
-
+var winner = null;
 
 function determineWinnerX () {
 
 	function winnerX () {
 			winner = 'X';
-			PlayerX.wins +=1;
-			winnerBoard.text("Winner is X!");
-			updateScore();
+			PlayerX.wins +1;
+			winnerBoard.text("X wins!");
+			
+			resetGame;
 	}
 	
 	//check all possible conditions for win
@@ -92,9 +96,9 @@ function determineWinnerX () {
 		if (b[0] == 'X' && b[1] == 'X' && b[2] == 'X') {
 			winnerX();
 			
-		} else if (b[0] == 'X' && b[3] ==  'X' && b[6] == 'X') {
+		} if (b[0] == 'X' && b[3] ==  'X' && b[6] == 'X') {
 			winnerX();
-		} else if (b[0] == 'X' && b[4] ==  'X' && b[8] == 'X') {
+		} if (b[0] == 'X' && b[4] ==  'X' && b[8] == 'X') {
 			winnerX();
 		} else {
 		    	playO();  
@@ -102,25 +106,25 @@ function determineWinnerX () {
 	}	if (b[1] == 'X') {
 		if(b[0] == 'X' && b[1] == 'X' && b[2] == 'X') {
 			winnerX();
-		} else if (b[1] == 'X' && b[4] == 'X' && b[7] == 'X') {
+		} if (b[1] == 'X' && b[4] == 'X' && b[7] == 'X') {
 			winnerX();
 		} else {
 				playO();
 			}
 	} if (b[2] == 'X') {
-		if (b[0] == 'X' && b[1] == 'X' && b[2]) {
+		if (b[0] == 'X' && b[1] == 'X' && b[2] == 'X') {
 			winnerX();
-		} else if (b[2] == 'X' && b[5] == 'X' && b[8]) {
+		} if (b[2] == 'X' && b[5] == 'X' && b[8] == 'X') {
 			winnerX();
-		} else if ([2] == 'X' && b[4] == 'X' && b[6]) {
+		} if (b[2] == 'X' && b[4] == 'X' && b[6] == 'X'){
 			winnerX();
 		} else {
 			playO();
 		}
 	} if (b[3] == 'X') {
-		if(b[3] == 'X' && b[4] == 'X' && b[5]) {
+		if(b[3] == 'X' && b[4] == 'X' && b[5] == 'X') {
 			winnerX();
-		} else if (b[2] == 'X' && b[4] == 'X' && b[6] == 'X') {
+		} if (b[2] == 'X' && b[4] == 'X' && b[6] == 'X') {
 			winnerX();
 		} else {
 			playO();
@@ -129,11 +133,11 @@ function determineWinnerX () {
 	} if (b[4] == 'X') {
 		if(b[1] == 'X' && b[4] == 'X' && b[7] == 'X') {
 			winnerX();
-		} else if (b[3] == 'X' && b[4] == 'X' && b[5] == 'X') {
+		} if (b[3] == 'X' && b[4] == 'X' && b[5] == 'X') {
 			winnerX();
-		} else if (b[0] == 'X' && b[4] == 'X' && b[8] == 'X') {
+		} if (b[0] == 'X' && b[4] == 'X' && b[8] == 'X') {
 			winnerX();
-		} else if (b[2] == 'X' && b[4] == 'X' && b[6] == 'X') {
+		} if (b[2] == 'X' && b[4] == 'X' && b[6] == 'X') {
 			winnerX();
 		} else {
 			playO();
@@ -141,7 +145,7 @@ function determineWinnerX () {
 	} if (b[5] == 'X') {
 		if(b[3] == 'X' && b[4] == 'X' && b[5] == 'X') {
 			winnerX();
-		} else if ([2] == 'X' && b[5] == 'X' && b[8] == 'X') {
+		} if ([2] == 'X' && b[5] == 'X' && b[8] == 'X') {
 			winnerX();
 		} else {
 			playO();
@@ -149,9 +153,9 @@ function determineWinnerX () {
 	} if (b[6] == 'X') {
 		if(b[6] == 'X' && b[7] == 'X' && b[8] == 'X') {
 			winnerX();
-		} else if (b[0] == 'X' && b[3] == 'X' && b[6] == 'X') {
+		} if (b[0] == 'X' && b[3] == 'X' && b[6] == 'X') {
 			winnerX();
-		} else if (b[2] == 'X' && b[4] == 'X' && b[6] == 'X') {
+		} if (b[2] == 'X' && b[4] == 'X' && b[6] == 'X') {
 			winnerX();
 		} else {
 			playO();
@@ -159,7 +163,7 @@ function determineWinnerX () {
 	} if (b[7] == 'X') {
 		if (b[6] == 'X' && b[7] == 'X' && b[8] == 'X') {
 			winnerX();
-		} else if (b[1] == 'X' && b[4] == 'X' && b[7] == 'X') {
+		} if (b[1] == 'X' && b[4] == 'X' && b[7] == 'X') {
 			winnerX();
 		} else {
 			playO();
@@ -167,9 +171,9 @@ function determineWinnerX () {
 	} if (b[8] == 'X') {
 		if(b[6] == 'X' && b[7] == 'X' && b[8] == 'X') {
 			winnerX();
-		} else if (b[2] == 'X' && b[5] == 'X' && b[8] == 'X') {
+		} if (b[2] == 'X' && b[5] == 'X' && b[8] == 'X') {
 			winnerX();
-		} else if (b[0] == 'X' && b[4] == 'X' && b[8] == 'X') {
+		} if (b[0] == 'X' && b[4] == 'X' && b[8] == 'X') {
 			winnerX();
 		}else {
 			playO();
@@ -181,9 +185,10 @@ function determineWinnerO () {
 
 	function winnerO () {
 			winner = 'O';
-			PlayerO.wins +=1;
-			winnerBoard.text("Winner is X!");
-			updateScore();
+			PlayerO.wins +1;
+			winnerBoard.text("O wins!");
+			
+			resetGame();
 	}
 	
 	//check all possible conditions for win
@@ -192,9 +197,9 @@ function determineWinnerO () {
 		if (b[0] == 'O' && b[1] == 'O' && b[2] == 'O') {
 			winnerO();
 			
-		} else if (b[0] == 'O' && b[3] ==  'O' && b[6] == 'O') {
+		} if (b[0] == 'O' && b[3] ==  'O' && b[6] == 'O') {
 			winnerO();
-		} else if (b[0] == 'O' && b[4] ==  'O' && b[8] == 'O') {
+		} if (b[0] == 'O' && b[4] ==  'O' && b[8] == 'O') {
 			winnerO();
 		} else {
 		    	playO();  
@@ -202,38 +207,38 @@ function determineWinnerO () {
 	}	if (b[1] == 'O') {
 		if(b[0] == 'O' && b[1] == 'O' && b[2] == 'O') {
 			winnerO();
-		} else if (b[1] == 'O' && b[4] == 'O' && b[7] == 'O') {
+		} if (b[1] == 'O' && b[4] == 'O' && b[7] == 'O') {
 			winnerO();
 		} else {
 				playO();
 			}
 	} if (b[2] == 'O') {
-		if (b[0] == 'O' && b[1] == 'O' && b[2]) {
+		if (b[0] == 'O' && b[1] == 'O' && b[2] == 'O') {
 			winnerO();
-		} else if (b[2] == 'O' && b[5] == 'O' && b[8]) {
+		} if (b[2] == 'O' && b[5] == 'O' && b[8] == 'O') {
 			winnerO();
-		} else if ([2] == 'O' && b[4] == 'O' && b[6]) {
+		} if (b[2] == 'O' && b[4] == 'O' && b[6] == 'O') {
 			winnerO();
 		} else {
 			playO();
 		}
 	} if (b[3] == 'O') {
-		if(b[3] == 'O' && b[4] == 'O' && b[5]) {
+		if(b[3] == 'O' && b[4] == 'O' && b[5] == 'O') {
 			winnerO();
-		} else if (b[2] == 'O' && b[4] == 'O' && b[6] == 'O') {
+		} if (b[2] == 'O' && b[4] == 'O' && b[6] == 'O') {
 			winnerO();
 		} else {
+
 			playO();
 			}
-	
 	} if (b[4] == 'O') {
 		if(b[1] == 'O' && b[4] == 'O' && b[7] == 'O') {
 			winnerO();
-		} else if (b[3] == 'O' && b[4] == 'O' && b[5] == 'O') {
+		} if (b[3] == 'O' && b[4] == 'O' && b[5] == 'O') {
 			winnerO();
-		} else if (b[0] == 'O' && b[4] == 'O' && b[8] == 'O') {
+		} if (b[0] == 'O' && b[4] == 'O' && b[8] == 'O') {
 			winnerO();
-		} else if (b[2] == 'O' && b[4] == 'O' && b[6] == 'O') {
+		} if (b[2] == 'O' && b[4] == 'O' && b[6] == 'O') {
 			winnerO();
 		} else {
 			playO();
@@ -241,7 +246,7 @@ function determineWinnerO () {
 	} if (b[5] == 'O') {
 		if(b[3] == 'O' && b[4] == 'O' && b[5] == 'O') {
 			winnerO();
-		} else if ([2] == 'O' && b[5] == 'O' && b[8] == 'O') {
+		} if ([2] == 'O' && b[5] == 'O' && b[8] == 'O') {
 			winnerO();
 		} else {
 			playO();
@@ -249,9 +254,9 @@ function determineWinnerO () {
 	} if (b[6] == 'O') {
 		if(b[6] == 'O' && b[7] == 'O' && b[8] == 'O') {
 			winnerO();
-		} else if (b[0] == 'O' && b[3] == 'O' && b[6] == 'O') {
+		} if (b[0] == 'O' && b[3] == 'O' && b[6] == 'O') {
 			winnerO();
-		} else if (b[2] == 'O' && b[4] == 'O' && b[6] == 'O') {
+		} if (b[2] == 'O' && b[4] == 'O' && b[6] == 'O') {
 			winnerO();
 		} else {
 			playO();
@@ -259,7 +264,7 @@ function determineWinnerO () {
 	} if (b[7] == 'O') {
 		if (b[6] == 'O' && b[7] == 'O' && b[8] == 'O') {
 			winnerO();
-		} else if (b[1] == 'O' && b[4] == 'O' && b[7] == 'O') {
+		} if (b[1] == 'O' && b[4] == 'O' && b[7] == 'O') {
 			winnerO();
 		} else {
 			playO();
@@ -267,9 +272,9 @@ function determineWinnerO () {
 	} if (b[8] == 'O') {
 		if(b[6] == 'O' && b[7] == 'O' && b[8] == 'O') {
 			winnerO();
-		} else if (b[2] == 'O' && b[5] == 'O' && b[8] == 'O') {
+		} if (b[2] == 'O' && b[5] == 'O' && b[8] == 'O') {
 			winnerO();
-		} else if (b[0] == 'O' && b[4] == 'O' && b[8] == 'O') {
+		} if (b[0] == 'O' && b[4] == 'O' && b[8] == 'O') {
 			winnerO();
 		}else {
 			playO();
@@ -277,9 +282,11 @@ function determineWinnerO () {
 	}
 }
 
+
+
 function start () {
 	playX();
-	updateScore();	
+		
 }
  
 // function resetGame () {
@@ -301,7 +308,9 @@ function buttons () {
 buttons();
 
 
-
+function resetGame () {
+	$box.text('');
+}
 	
 
 // styling
