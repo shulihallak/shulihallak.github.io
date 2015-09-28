@@ -1,4 +1,4 @@
-# shulihallak.github.io
+#### shulihallak.github.io
 
 ## Project 1: Tic Tac Toe
 
@@ -28,6 +28,16 @@ Reset game button option
 hints
 
 Levels: easy, medium, hard.
+
+
+### Code details
+
+This game is built using the Materialize framework. It facilitated a clean interface with smooth hover features. 
+Originally the game was built using an autoplayer function, but difficulties emerged when trying to make the autoplayer continue to play if it hit an 'X' or an 'O'.  
+
+Instead, I built it for 2 players only. A constructor function was set up to build out the players with their respective details. And originally a setListener prototype was added to allow for each Player to choose their box, so I created two separate functions. 
+It works, but there are bugs in how the .on() listener works. It causes bubbling, because it is bound to the function. I attempted to fix this but was not successful.
+The game works, however there are glitches when calculating the correct score.
 
 
 
