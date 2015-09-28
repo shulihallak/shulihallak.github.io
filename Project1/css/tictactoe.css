@@ -11,6 +11,12 @@ div.container.card-panel.hoverable {
 	margin: 0 auto;
 	background-color: #f5f5f5;
 }
+.winner {
+	margin: 0 auto;
+	height: 50px;
+	width: 300px;
+	border: 1px solid blue;
+}
 
 #scoreboard {
 	margin-bottom: 25px;

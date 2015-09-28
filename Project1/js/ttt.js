@@ -1,6 +1,17 @@
 var $box = $('.col.s4');
+// var box0 = $('#zero');
+// var box1 = $('#one');
+// var box2 = $('#two');
+// var box3 = $('#three');
+// var box4 = $('#four');
+// var box5 = $('#five');
+// var box6 = $('#six');
+// var box7 = $('#seven');
+// var box8 = $('#eight');
 
-var b = [null, null, null, null, null, null, null, null, null];
+
+
+// var b = [null, null, null, null, null, null, null, null, null];
 
 var nameFieldX = $('#first_name1');
 var nameFieldO = $('#first_name2');
@@ -38,42 +49,39 @@ $(nameFieldO).on('keypress', function (e) {
 
 
 
-var PlayerX = new Player('X', false, nameX, 'X');
+var PlayerX = new Player('X', false, nameX);
 var PlayerO = new Player('O', false, nameO);
 
 //get input name values
+    
 
+    function playX () {
 
+    var b = new Array(9);
+    	
+     $box.one('click', function (e) {
+        console.log(this);
+        var a = e.target.dataset.index;
+        b[a] = 'X';
+        $(this).text('X');
+        playO();     
+  })
+ }
+    function playO() {
 
-function playX () {
-	
-		 $box.on('click', function (e) {
-		  	console.log(e.target.dataset.index);
-		  	var a = e.target.dataset.index;
-		  	b[a] = 'X';
-		  	$(this).off('click');
-		  	$(this).text('X');
-		  	determineWinner('X');
-		  	playO();
-	})
-}
-function playO() {
+    $box.one('click', function (e) {
+        console.log(this);
+        var b = e.target.dataset.index;
+        b[b] = 'O';
+        $(this).text('O');
 
-		$box.on('click', function (e){
-			console.log(e.target.dataset.index);
-			var b = e.target.dataset.index;
-			b[b] = 'O';
-			$(this).off('click');
-			$(this).text('O');
-			determineWinner('O');
-			playX();		
-	})
-}
+        playX();
 
-
-$box.on('click', function (e) {
-	console.log(e.target.dataset.index);
 })
+}
+
+
+
 
 
 
@@ -82,13 +90,13 @@ $box.on('click', function (e) {
 // 	if (PlayerX.turn == 'X') {
 // 		if (this.identity == 'X') {
 // 		  $box.on('click', function (e) {
+// 		  	console.log(e.target.dataset.index);
 // 		  	var a = e.target.dataset.index;
 // 		  	b[a] = 'X';
-		  	
+
 // 		  	$(this).text('X');
-// 		  		determineWinner();
+// 		  		// determineWinner('X');
 // 		  		this.nextTurn = 'O';
-// 		  		$(this).off('click');
 	
 // 		 })
 // 	 }
@@ -102,10 +110,8 @@ $box.on('click', function (e) {
 // 			var b = e.target.dataset.index;
 // 			b[b] = 'O';
 // 			$(this).text('O');
-			
 // 			// determineWinner('O');
 // 			this.nextTurn = 'X';
-// 			$(this).off('click');
 // 		})
 // 	}
 // 	}
@@ -176,9 +182,6 @@ var winner = null;
 
 function determineWinner () {
 	
-
-
-
 	//check all possible conditions for win
 
 	if (b[0] == 'X') {
@@ -318,8 +321,9 @@ function determineWinner () {
 	}
 }
 
+
 function start () {
-	playX();
+	playX();	
 }
  
 function resetGame () {
