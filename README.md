@@ -39,6 +39,11 @@ Instead, I built it for 2 players only. A constructor function was set up to bui
 It works, but there are bugs in how the .on() listener works. It causes bubbling, because it is bound to the function. I attempted to fix this but was not successful.
 The game works, however there are glitches when calculating the correct score.
 
+### Stackoverflow
+I posted a question on Stackoverflow in order to get help with the event bubbling. 
+Here's a direct link to the question and answers
+http://stackoverflow.com/questions/32813362/jquery-event-bubbling/32813499?noredirect=1#comment53477463_32813499
+
 
 
 
