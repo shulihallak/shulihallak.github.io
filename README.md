@@ -29,6 +29,7 @@ hints
 
 Levels: easy, medium, hard.
 
+
 ### Wins:
 Starting to understand constructors and prototypes a bit more and was able to use them.
 
@@ -36,6 +37,8 @@ Starting to understand constructors and prototypes a bit more and was able to us
 
 
 ### Code details
+
+####This game is built with HTML, CSS, Javascript, JQuery and Materialize framework.
 
 This game is built using the Materialize framework. It facilitated a clean interface with smooth hover features. 
 Originally the game was built using an autoplayer function, but difficulties emerged when trying to make the autoplayer continue to play if it hit an 'X' or an 'O'.  
